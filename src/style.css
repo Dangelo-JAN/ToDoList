@@ -1,0 +1,52 @@
+@font-face {
+  font-family: "Regular";
+  src: url('./RobotoCondensed-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Italic";
+  src: url('./RobotoCondensed-Italic.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Regular", serif;
+}
+
+#todo-container {
+  width: 31vw;
+  box-shadow: 0 5px 10px #a39d9c;
+}
+
+.row {
+  width: 30vw;
+  display: flex;
+  justify-content: space-between;
+  border-top: solid 1px #f1f1f1;
+  border-bottom: solid 1px #f1f1f1;
+  padding: 5px;
+}
+
+.todo-input {
+  border: none;
+}
+
+.todo-input::placeholder {
+  font-family: "Italic", serif;
+}
+
+.label-task {
+  width: 25vw;
+}
+
+.todo-bottom {
+  text-align: center;
+  color: #a39d9c;
+  background-color: #f0eae9;
+  width: auto;
+  border-top: solid 2px #f1f1f1;
+  padding: 0.5em;
+}
