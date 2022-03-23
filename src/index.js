@@ -7,27 +7,27 @@ const toDoList = [
   {
     description: 'Do Workout',
     completed: false,
-    number: '1',
+    index: 1,
   },
   {
     description: 'Clean my room',
     completed: false,
-    number: '2',
+    index: 2,
   },
   {
     description: 'Take my breakfast',
     completed: false,
-    number: '3',
+    index: 3,
   },
   {
     description: 'Take my shower',
     completed: false,
-    number: '4',
+    index: 4,
   },
   {
     description: 'Complete all the Microverse day activities',
     completed: false,
-    number: '5',
+    index: 5,
   },
 ];
 
