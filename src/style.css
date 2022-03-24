@@ -16,9 +16,17 @@ body {
   font-family: "Regular", serif;
 }
 
-#todo-container {
+input {
+  border: none;
+}
+
+#container {
   width: 31vw;
   box-shadow: 0 5px 10px #a39d9c;
+}
+
+#todo-container {
+  width: 31vw;
 }
 
 .row {
@@ -32,13 +40,14 @@ body {
 
 .todo-input {
   border: none;
+  width: 30vw;
 }
 
 .todo-input::placeholder {
   font-family: "Italic", serif;
 }
 
-.label-task {
+.input-task {
   width: 25vw;
 }
 
@@ -46,7 +55,9 @@ body {
   text-align: center;
   color: #a39d9c;
   background-color: #f0eae9;
-  width: auto;
+  width: 31vw;
+  border-style: hidden;
   border-top: solid 2px #f1f1f1;
   padding: 0.5em;
+  font-size: 1em;
 }
