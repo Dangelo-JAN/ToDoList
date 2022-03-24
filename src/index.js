@@ -1,8 +1,10 @@
+import ToDoList from './todolist';
 import './style.css';
-import DotsIcon from './more_vert_black_24dp.svg';
+//import DotsIcon from './more_vert_black_24dp.svg';
 import EnterIcon from './keyboard_return_black_24dp.svg';
 import RefershIcon from './replay_black_24dp.svg';
 
+/*
 const toDoList = [
   {
     description: 'Do Workout',
@@ -30,6 +32,8 @@ const toDoList = [
     index: 5,
   },
 ];
+*/
+
 
 function component() {
   // Creating todo-container's elements
@@ -46,6 +50,7 @@ function component() {
   listHeader.append(listTitle, refreshButtom);
   rowInput.append(todoInput, enterButtom);
 
+  /*
   toDoList.forEach((todo) => {
     const taskRow = document.createElement('div');
     const checkBox = document.createElement('input');
@@ -61,6 +66,16 @@ function component() {
     labelTask.classList.add('label-task');
     checkBox.setAttribute('type', 'checkbox');
   });
+  */
+
+  // Adding classes to elements
+  listHeader.classList.add('row');
+  rowInput.classList.add('row');
+  todoInput.classList.add('todo-input');
+
+  // Adding ids to elements
+  todoInput.setAttribute('id', 'todo-input');
+  enterButtom.setAttribute('id', 'enter-button');
 
   // Adding content to the elements
   listTitle.textContent = 'Today`s To Do';
@@ -69,12 +84,7 @@ function component() {
   todoInput.setAttribute('type', 'text');
   todoInput.setAttribute('name', 'add-todo');
   todoInput.setAttribute('placeholder', 'Add to your list');
-  todoInput.setAttribute('require', 'true');
-
-  // Adding classes to elements
-  listHeader.classList.add('row');
-  rowInput.classList.add('row');
-  todoInput.classList.add('todo-input');
+  todoInput.required = true;
 
   const finalBottom = document.createElement('div');
   divContainer.appendChild(finalBottom);
@@ -85,3 +95,6 @@ function component() {
 }
 
 component();
+const todo = new ToDoList();
+document.getElementById('enter-button').addEventListener('click', todo.add);
+todo.loadScreen();
