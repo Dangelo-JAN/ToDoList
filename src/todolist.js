@@ -1,3 +1,4 @@
+import * as toDoCheck from './completed.js';
 import DeleteIcon from './delete_black_24dp.svg';
 
 const toDoContainer = document.getElementById('todo-container');
@@ -73,8 +74,11 @@ export default class ToDoList {
 
       taskRow.classList.add('row');
       inputTask.classList.add('input-task');
+      checkBox.classList.add('checkbox');
       inputTask.setAttribute('type', 'text');
       checkBox.setAttribute('type', 'checkbox');
+
+      console.log(checkBox.value);
 
       deleteButtom.addEventListener('click', () => {
         this.remove(todo.index);
@@ -82,6 +86,14 @@ export default class ToDoList {
 
       inputTask.addEventListener('input', () => {
         this.setInputTask(todo.index, inputTask.value);
+      });
+
+      checkBox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          toDoCheck.True(todo.index);
+        } else {
+          toDoCheck.False(todo.index);
+        }
       });
     });
   }
