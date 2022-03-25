@@ -13,80 +13,91 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const toDoContainer = document.getElementById('todo-container');
-const finalBottom = document.getElementById('final-bottom');
 class ToDoList {
-  
-    createEmpty = () => {
+  createEmpty = () => {
+    const todoes = [];
+    localStorage.setItem('todoes', JSON.stringify(todoes));
+  };
 
-      const todoes = [];
-      localStorage.setItem('todoes', JSON.stringify(todoes));
+  add = (e) => {
+    const description = document.getElementById('todo-input').value;
+    const todoes = [];
+    const todo = {
+      description,
+      completed: false,
+      index: todoes.length,
     };
-  
-    add = (e) => {
-      const description = document.getElementById('todo-input').value;
-      const todoes = [];
-      const todo = {
-        description,
-        completed: false,
-        index: todoes.length,
-      };
-  
-      if (localStorage.getItem('todoes') === undefined) {
-        todoes.push(todo);
-        localStorage.setItem('todoes', JSON.stringify(todoes));
-      } else {
-        const todoes = JSON.parse(localStorage.getItem('todoes'));
-        todo.index = todoes.length + 1;
-        todoes.push(todo);
-        localStorage.setItem('todoes', JSON.stringify(todoes));
-      }
-      e.preventDefault();
-      window.location.reload();
-    };
-  
-    remove = (index) => {
-      const todoes = JSON.parse(localStorage.getItem('todoes'));
-      for (let i = 0; i < todoes.length; i += 1) {
-        if (index === todoes[i].index) {
-          todoes.splice(i, 1);
-        }
-      }
 
-      for (let i = 0; i < todoes.length; i += 1) {
-        todoes[i].index = i + 1;
-      }
-  
+    if (localStorage.getItem('todoes') === undefined) {
+      todoes.push(todo);
       localStorage.setItem('todoes', JSON.stringify(todoes));
-      window.location.reload();
-    };
-  
-    loadScreen = () => {
+    } else {
       const todoes = JSON.parse(localStorage.getItem('todoes'));
-      if (!todoes) {
-        this.createEmpty();
-      }
-      todoes.forEach((todo) => {
-        const taskRow = document.createElement('div');
-        const checkBox = document.createElement('input');
-        const inputTask = document.createElement('input');
-        const deleteButtom = document.createElement('img');
-    
-        toDoContainer.appendChild(taskRow);
-        taskRow.append(checkBox, inputTask, deleteButtom);
-        inputTask.value = todo.description;
-        deleteButtom.src = _delete_black_24dp_svg__WEBPACK_IMPORTED_MODULE_0__;
-    
-        taskRow.classList.add('row');
-        inputTask.classList.add('input-task');
-        inputTask.setAttribute('type', 'text');
-        checkBox.setAttribute('type', 'checkbox');
-        
-        deleteButtom.addEventListener('click', () => {
-          this.remove(todo.index);
-        });
-      });
+      todo.index = todoes.length + 1;
+      todoes.push(todo);
+      localStorage.setItem('todoes', JSON.stringify(todoes));
     }
+    e.preventDefault();
+    window.location.reload();
+  };
+
+  setInputTask = (index, value) => {
+    const todoes = JSON.parse(localStorage.getItem('todoes'));
+    for (let i = 0; i < todoes.length; i += 1) {
+      if (index === todoes[i].index) {
+        todoes[i].description = value;
+      }
+    }
+    localStorage.setItem('todoes', JSON.stringify(todoes));
+  };
+
+  remove = (index) => {
+    const todoes = JSON.parse(localStorage.getItem('todoes'));
+    for (let i = 0; i < todoes.length; i += 1) {
+      if (index === todoes[i].index) {
+        todoes.splice(i, 1);
+      }
+    }
+
+    for (let i = 0; i < todoes.length; i += 1) {
+      todoes[i].index = i + 1;
+    }
+
+    localStorage.setItem('todoes', JSON.stringify(todoes));
+    window.location.reload();
+  };
+
+  loadScreen = () => {
+    const todoes = JSON.parse(localStorage.getItem('todoes'));
+    if (!todoes) {
+      this.createEmpty();
+    }
+    todoes.forEach((todo) => {
+      const taskRow = document.createElement('div');
+      const checkBox = document.createElement('input');
+      const inputTask = document.createElement('input');
+      const deleteButtom = document.createElement('img');
+
+      toDoContainer.appendChild(taskRow);
+      taskRow.append(checkBox, inputTask, deleteButtom);
+      inputTask.value = todo.description;
+      deleteButtom.src = _delete_black_24dp_svg__WEBPACK_IMPORTED_MODULE_0__;
+
+      taskRow.classList.add('row');
+      inputTask.classList.add('input-task');
+      inputTask.setAttribute('type', 'text');
+      checkBox.setAttribute('type', 'checkbox');
+
+      deleteButtom.addEventListener('click', () => {
+        this.remove(todo.index);
+      });
+
+      inputTask.addEventListener('input', () => {
+        this.setInputTask(todo.index, inputTask.value);
+      });
+    });
   }
+}
 
 /***/ }),
 /* 2 */
@@ -737,7 +748,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _todolist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _todolist_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _keyboard_return_black_24dp_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
 /* harmony import */ var _replay_black_24dp_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17);
@@ -781,14 +792,12 @@ const component = () => {
   todoInput.required = true;
 
   return divContainer;
-}
+};
 
 component();
-const todo = new _todolist__WEBPACK_IMPORTED_MODULE_0__["default"]();
+const todo = new _todolist_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
 document.getElementById('enter-button').addEventListener('click', todo.add);
 todo.loadScreen();
-
-
 })();
 
 /******/ })()
