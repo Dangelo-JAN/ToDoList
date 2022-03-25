@@ -29,22 +29,15 @@ export default class ToDoList {
     window.location.reload();
   };
 
-  setInputTask = (index) => {
+  setInputTask = (index, value) => {
     const todoes = JSON.parse(localStorage.getItem('todoes'));
-    const InputTask = document.getElementsByClassName('input-Task');
-    const InputValue = document.getElementsByClassName('input-Task').value;
     for (let i = 0; i < todoes.length; i += 1) {
-      console.log('en el for del setInput');
       if (index === todoes[i].index) {
-        console.log('en el if del setInput');
-        console.log(todoes);
-        todoes.description = `${InputValue}`;
+        todoes[i].description = value;
       }
     }
-
     localStorage.setItem('todoes', JSON.stringify(todoes));
-    //window.location.reload();
-  }
+  };
 
   remove = (index) => {
     const todoes = JSON.parse(localStorage.getItem('todoes'));
@@ -88,7 +81,7 @@ export default class ToDoList {
       });
 
       inputTask.addEventListener('input', () => {
-        this.setInputTask(todo.index);
+        this.setInputTask(todo.index, inputTask.value);
       });
     });
   }
