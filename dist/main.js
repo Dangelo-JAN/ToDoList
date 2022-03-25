@@ -91,8 +91,6 @@ class ToDoList {
       inputTask.setAttribute('type', 'text');
       checkBox.setAttribute('type', 'checkbox');
 
-      console.log(checkBox.value);
-
       deleteButtom.addEventListener('click', () => {
         this.remove(todo.index);
       });
@@ -125,17 +123,22 @@ __webpack_require__.r(__webpack_exports__);
 const todoes = JSON.parse(localStorage.getItem('todoes'));
 
 const DeleteChecked = () => {
-    console.log('entrando al deletedChecked')
-  for (let i = 0; i < todoes.length; i += 1){
+  for (let i = 0; i < todoes.length; i += 1) {
     if (todoes[i].completed === true) {
       todoes.splice(i, 1);
-      localStorage.setItem('todoes', JSON.stringify(todoes));
     }
   }
-}
+
+  for (let i = 0; i < todoes.length; i += 1) {
+    todoes[i].index = i + 1;
+  }
+
+  localStorage.setItem('todoes', JSON.stringify(todoes));
+  window.location.reload();
+};
 
 const True = (index) => {
-  for (let i = 0; i < todoes.length; i += 1){
+  for (let i = 0; i < todoes.length; i += 1) {
     if (index === todoes[i].index) {
       todoes[i].completed = true;
       localStorage.setItem('todoes', JSON.stringify(todoes));
@@ -144,11 +147,11 @@ const True = (index) => {
 };
 
 const False = (index) => {
-  for (let i = 0; i < todoes.length; i += 1){
+  for (let i = 0; i < todoes.length; i += 1) {
     if (index === todoes[i].index) {
       todoes[i].completed = false;
       localStorage.setItem('todoes', JSON.stringify(todoes));
-      }
+    }
   }
 };
 
@@ -857,9 +860,8 @@ document.getElementById('enter-button').addEventListener('click', todo.add);
 todo.loadScreen();
 
 const clearAllCompleted = document.getElementById('todo-bottom');
-clearAllCompleted.addEventListener('submit', () => {
-  console.log('estoy en el listener');
-  _completed_js__WEBPACK_IMPORTED_MODULE_1__.DeleteChecked;
+clearAllCompleted.addEventListener('click', () => {
+  _completed_js__WEBPACK_IMPORTED_MODULE_1__.DeleteChecked();
 });
 })();
 
