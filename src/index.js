@@ -1,4 +1,4 @@
-import ToDoList from './todolist';
+import ToDoList from './todolist.js';
 import './style.css';
 import EnterIcon from './keyboard_return_black_24dp.svg';
 import RefershIcon from './replay_black_24dp.svg';
@@ -38,10 +38,9 @@ const component = () => {
   todoInput.required = true;
 
   return divContainer;
-}
+};
 
 component();
 const todo = new ToDoList();
 document.getElementById('enter-button').addEventListener('click', todo.add);
 todo.loadScreen();
-
