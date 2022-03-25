@@ -7,21 +7,114 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ToDoList)
+/* harmony export */ });
+/* harmony import */ var _delete_black_24dp_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+
+
+const toDoContainer = document.getElementById('todo-container');
+const finalBottom = document.getElementById('final-bottom');
+class ToDoList {
+  
+    createEmpty = () => {
+
+      const todoes = [];
+      localStorage.setItem('todoes', JSON.stringify(todoes));
+    };
+  
+    add = (e) => {
+      const description = document.getElementById('todo-input').value;
+      const todoes = [];
+      const todo = {
+        description,
+        completed: false,
+        index: todoes.length,
+      };
+  
+      if (localStorage.getItem('todoes') === undefined) {
+        todoes.push(todo);
+        localStorage.setItem('todoes', JSON.stringify(todoes));
+      } else {
+        const todoes = JSON.parse(localStorage.getItem('todoes'));
+        todo.index = todoes.length + 1;
+        todoes.push(todo);
+        localStorage.setItem('todoes', JSON.stringify(todoes));
+      }
+      e.preventDefault();
+      window.location.reload();
+    };
+  
+    remove = (index) => {
+      const todoes = JSON.parse(localStorage.getItem('todoes'));
+      for (let i = 0; i < todoes.length; i += 1) {
+        if (index === todoes[i].index) {
+          todoes.splice(i, 1);
+        }
+      }
+
+      for (let i = 0; i < todoes.length; i += 1) {
+        todoes[i].index = i + 1;
+      }
+  
+      localStorage.setItem('todoes', JSON.stringify(todoes));
+      window.location.reload();
+    };
+  
+    loadScreen = () => {
+      const todoes = JSON.parse(localStorage.getItem('todoes'));
+      if (!todoes) {
+        this.createEmpty();
+      }
+      todoes.forEach((todo) => {
+        const taskRow = document.createElement('div');
+        const checkBox = document.createElement('input');
+        const inputTask = document.createElement('input');
+        const deleteButtom = document.createElement('img');
+    
+        toDoContainer.appendChild(taskRow);
+        taskRow.append(checkBox, inputTask, deleteButtom);
+        inputTask.value = todo.description;
+        deleteButtom.src = _delete_black_24dp_svg__WEBPACK_IMPORTED_MODULE_0__;
+    
+        taskRow.classList.add('row');
+        inputTask.classList.add('input-task');
+        inputTask.setAttribute('type', 'text');
+        checkBox.setAttribute('type', 'checkbox');
+        
+        deleteButtom.addEventListener('click', () => {
+          this.remove(todo.index);
+        });
+      });
+    }
+  }
+
+/***/ }),
+/* 2 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "f9d8018b7ecda4f496e4.svg";
+
+/***/ }),
+/* 3 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(10);
 
       
       
@@ -52,7 +145,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ ((module) => {
 
 
@@ -161,7 +254,7 @@ module.exports = function (list, options) {
 };
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ ((module) => {
 
 
@@ -236,7 +329,7 @@ function domAPI(options) {
 module.exports = domAPI;
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ ((module) => {
 
 
@@ -280,7 +373,7 @@ function insertBySelector(insert, style) {
 module.exports = insertBySelector;
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
@@ -297,7 +390,7 @@ function setAttributesWithoutAttributes(styleElement) {
 module.exports = setAttributesWithoutAttributes;
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ ((module) => {
 
 
@@ -313,7 +406,7 @@ function insertStyleElement(options) {
 module.exports = insertStyleElement;
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ ((module) => {
 
 
@@ -334,36 +427,36 @@ function styleTagTransform(css, styleElement) {
 module.exports = styleTagTransform;
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
 /* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
 // Imports
 
 
 
-var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(12), __webpack_require__.b);
-var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(13), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(14), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(15), __webpack_require__.b);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_1___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@font-face {\r\n  font-family: \"Regular\";\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  font-weight: 400;\r\n  font-style: normal;\r\n}\r\n\r\n@font-face {\r\n  font-family: \"Italic\";\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n  font-weight: 400;\r\n  font-style: normal;\r\n}\r\n\r\nbody {\r\n  font-family: \"Regular\", serif;\r\n}\r\n\r\n#todo-container {\r\n  width: 31vw;\r\n  box-shadow: 0 5px 10px #a39d9c;\r\n}\r\n\r\n.row {\r\n  width: 30vw;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  border-top: solid 1px #f1f1f1;\r\n  border-bottom: solid 1px #f1f1f1;\r\n  padding: 5px;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n}\r\n\r\n.todo-input::placeholder {\r\n  font-family: \"Italic\", serif;\r\n}\r\n\r\n.label-task {\r\n  width: 25vw;\r\n}\r\n\r\n.todo-bottom {\r\n  text-align: center;\r\n  color: #a39d9c;\r\n  background-color: #f0eae9;\r\n  width: auto;\r\n  border-top: solid 2px #f1f1f1;\r\n  padding: 0.5em;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@font-face {\r\n  font-family: \"Regular\";\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  font-weight: 400;\r\n  font-style: normal;\r\n}\r\n\r\n@font-face {\r\n  font-family: \"Italic\";\r\n  src: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ");\r\n  font-weight: 400;\r\n  font-style: normal;\r\n}\r\n\r\nbody {\r\n  font-family: \"Regular\", serif;\r\n}\r\n\r\ninput {\r\n  border: none;\r\n}\r\n\r\n#container {\r\n  width: 31vw;\r\n  box-shadow: 0 5px 10px #a39d9c;\r\n}\r\n\r\n#todo-container {\r\n  width: 31vw;\r\n}\r\n\r\n.row {\r\n  width: 30vw;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  border-top: solid 1px #f1f1f1;\r\n  border-bottom: solid 1px #f1f1f1;\r\n  padding: 5px;\r\n}\r\n\r\n.todo-input {\r\n  border: none;\r\n  width: 30vw;\r\n}\r\n\r\n.todo-input::placeholder {\r\n  font-family: \"Italic\", serif;\r\n}\r\n\r\n.input-task {\r\n  width: 25vw;\r\n}\r\n\r\n.todo-bottom {\r\n  text-align: center;\r\n  color: #a39d9c;\r\n  background-color: #f0eae9;\r\n  width: 31vw;\r\n  border-style: hidden;\r\n  border-top: solid 2px #f1f1f1;\r\n  padding: 0.5em;\r\n  font-size: 1em;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ ((module) => {
 
 
@@ -373,7 +466,7 @@ module.exports = function (i) {
 };
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ ((module) => {
 
 
@@ -480,7 +573,7 @@ module.exports = function (cssWithMappingToString) {
 };
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ ((module) => {
 
 
@@ -514,31 +607,25 @@ module.exports = function (url, options) {
 };
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "fc3d2f2e3a203d0037c1.ttf";
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "7d70998915d35a40e9fb.ttf";
 
 /***/ }),
-/* 14 */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-module.exports = __webpack_require__.p + "f2acbf2e67be865530c8.svg";
-
-/***/ }),
-/* 15 */
+/* 16 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "40ea969f67d2dd66a94f.svg";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "1fa964cd7cadb70497ce.svg";
@@ -616,7 +703,7 @@ module.exports = __webpack_require__.p + "1fa964cd7cadb70497ce.svg";
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		__webpack_require__.p = "/todo-list/";
+/******/ 		__webpack_require__.p = "/ToDoList/";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
@@ -650,46 +737,19 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _more_vert_black_24dp_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
-/* harmony import */ var _keyboard_return_black_24dp_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
-/* harmony import */ var _replay_black_24dp_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(16);
+/* harmony import */ var _todolist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
+/* harmony import */ var _keyboard_return_black_24dp_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
+/* harmony import */ var _replay_black_24dp_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17);
 
 
 
 
 
-const toDoList = [
-  {
-    description: 'Do Workout',
-    completed: false,
-    number: '1',
-  },
-  {
-    description: 'Clean my room',
-    completed: false,
-    number: '2',
-  },
-  {
-    description: 'Take my breakfast',
-    completed: false,
-    number: '3',
-  },
-  {
-    description: 'Take my shower',
-    completed: false,
-    number: '4',
-  },
-  {
-    description: 'Complete all the Microverse day activities',
-    completed: false,
-    number: '5',
-  },
-];
+const divContainer = document.getElementById('todo-container');
 
-function component() {
+const component = () => {
   // Creating todo-container's elements
-  const divContainer = document.getElementById('todo-container');
   const listHeader = document.createElement('div');
   const listTitle = document.createElement('span');
   const refreshButtom = document.createElement('img');
@@ -702,21 +762,14 @@ function component() {
   listHeader.append(listTitle, refreshButtom);
   rowInput.append(todoInput, enterButtom);
 
-  toDoList.forEach((todo) => {
-    const taskRow = document.createElement('div');
-    const checkBox = document.createElement('input');
-    const labelTask = document.createElement('label');
-    const deleteButtom = document.createElement('img');
+  // Adding classes to elements
+  listHeader.classList.add('row');
+  rowInput.classList.add('row');
+  todoInput.classList.add('todo-input');
 
-    divContainer.appendChild(taskRow);
-    taskRow.append(checkBox, labelTask, deleteButtom);
-    labelTask.textContent = todo.description;
-    deleteButtom.src = _more_vert_black_24dp_svg__WEBPACK_IMPORTED_MODULE_1__;
-
-    taskRow.classList.add('row');
-    labelTask.classList.add('label-task');
-    checkBox.setAttribute('type', 'checkbox');
-  });
+  // Adding ids to elements
+  todoInput.setAttribute('id', 'todo-input');
+  enterButtom.setAttribute('id', 'enter-button');
 
   // Adding content to the elements
   listTitle.textContent = 'Today`s To Do';
@@ -725,22 +778,17 @@ function component() {
   todoInput.setAttribute('type', 'text');
   todoInput.setAttribute('name', 'add-todo');
   todoInput.setAttribute('placeholder', 'Add to your list');
-  todoInput.setAttribute('require', 'true');
-
-  // Adding classes to elements
-  listHeader.classList.add('row');
-  rowInput.classList.add('row');
-  todoInput.classList.add('todo-input');
-
-  const finalBottom = document.createElement('div');
-  divContainer.appendChild(finalBottom);
-  finalBottom.textContent = 'Clear all completed';
-  finalBottom.classList.add('todo-bottom');
+  todoInput.required = true;
 
   return divContainer;
 }
 
 component();
+const todo = new _todolist__WEBPACK_IMPORTED_MODULE_0__["default"]();
+document.getElementById('enter-button').addEventListener('click', todo.add);
+todo.loadScreen();
+
+
 })();
 
 /******/ })()
