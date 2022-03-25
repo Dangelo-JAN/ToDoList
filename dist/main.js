@@ -44,16 +44,12 @@ class ToDoList {
   setInputTask = (index, value) => {
     const todoes = JSON.parse(localStorage.getItem('todoes'));
     for (let i = 0; i < todoes.length; i += 1) {
-      console.log('en el for del setInput');
       if (index === todoes[i].index) {
-        console.log('en el if del setInput');
-        console.log(todoes);
-        todoes[i].description = value;  
+        todoes[i].description = value;
       }
     }
     localStorage.setItem('todoes', JSON.stringify(todoes));
-    //window.location.reload();
-  }
+  };
 
   remove = (index) => {
     const todoes = JSON.parse(localStorage.getItem('todoes'));
