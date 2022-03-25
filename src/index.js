@@ -48,6 +48,5 @@ todo.loadScreen();
 
 const clearAllCompleted = document.getElementById('todo-bottom');
 clearAllCompleted.addEventListener('click', () => {
-  console.log('estoy en el listener');
   toDoCheck.DeleteChecked();
 });

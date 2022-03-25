@@ -78,8 +78,6 @@ export default class ToDoList {
       inputTask.setAttribute('type', 'text');
       checkBox.setAttribute('type', 'checkbox');
 
-      console.log(checkBox.value);
-
       deleteButtom.addEventListener('click', () => {
         this.remove(todo.index);
       });
