@@ -1,4 +1,5 @@
 import ToDoList from './todolist.js';
+import * as toDoCheck from './completed.js';
 import './style.css';
 import EnterIcon from './keyboard_return_black_24dp.svg';
 import RefershIcon from './replay_black_24dp.svg';
@@ -44,3 +45,8 @@ component();
 const todo = new ToDoList();
 document.getElementById('enter-button').addEventListener('click', todo.add);
 todo.loadScreen();
+
+const clearAllCompleted = document.getElementById('todo-bottom');
+clearAllCompleted.addEventListener('click', () => {
+  toDoCheck.DeleteChecked();
+});
